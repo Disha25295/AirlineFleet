@@ -1,0 +1,20 @@
+import os
+
+class Development(object):
+
+    DEBUG = True
+    TESTING = False
+    JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
+    SQLALCHEMY_DATABASE_URI = 'postgres://postgres:admin@localhost:5432/airlinefleetdata'
+
+
+class Production(object):
+    DEBUG = False
+    TESTING = False
+    JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
+
+app_config = {
+    'development' : Development,
+    'production' : Production,
+}
